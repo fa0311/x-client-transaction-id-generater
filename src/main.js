@@ -2,7 +2,6 @@
 
 const { parse } = require("node-html-parser");
 const { getAnimationKey } = require("./convert");
-const fs = require("fs/promises");
 const { generateTransactionId } = require("./encode");
 const { decodeBase64 } = require("./encode");
 const { never } = require("./tool");
@@ -45,15 +44,14 @@ const cookieEncode = (cookie) => {
 const createSession = async (cookies) => {
   const userAgent = await getUserAgent();
 
-  // const raw = await fetch("https://x.com", {
-  //   method: "GET",
-  //   headers: {
-  //     ...userAgent["chrome"],
-  //     Cookie: cookieEncode(cookies),
-  //   },
-  // });
-  // const html = await raw.text();
-  const html = await fs.readFile("Z:\\Project\\js\\x-client-transaction-extract-browser\\res\\html.html", "utf-8");
+  const raw = await fetch("https://x.com", {
+    method: "GET",
+    headers: {
+      ...userAgent["chrome"],
+      Cookie: cookieEncode(cookies),
+    },
+  });
+  const html = await raw.text();
   const root = parse(html);
   const content = root.querySelector("[name^=tw]")?.getAttribute("content") ?? never("No content");
   const verification = decodeBase64(content);
@@ -61,9 +59,6 @@ const createSession = async (cookies) => {
   const svgArray = svgKey(verification, frames);
   const indexKey = [38, 29, 43, 3];
   const animationKey = getAnimationKey(svgArray, verification, indexKey);
-
-  await fs.writeFile("Z:\\Project\\js\\x-client-transaction-extract-browser\\res\\html.html", html);
-  await fs.writeFile("Z:\\Project\\js\\x-client-transaction-extract-browser\\res\\xx.txt", animationKey.join(""));
   return {
     get: (method, path) => generateTransactionId(method, path, content, animationKey.join("")),
   };
