@@ -13,7 +13,7 @@ const encodeSha256 = async (data) => {
 };
 
 /**
- * @param {Uint8Array<ArrayBuffer>} data
+ * @param {Uint8Array} data
  * @returns {string}
  */
 const encodeBase64 = (data) => {

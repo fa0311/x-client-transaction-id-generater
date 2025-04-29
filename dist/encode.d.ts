@@ -7,10 +7,10 @@
  */
 export function generateTransactionId(method: string, path: string, key: string, animationKey: string): Promise<string>;
 /**
- * @param {Uint8Array<ArrayBuffer>} data
+ * @param {Uint8Array} data
  * @returns {string}
  */
-export function encodeBase64(data: Uint8Array<ArrayBuffer>): string;
+export function encodeBase64(data: Uint8Array): string;
 /**
  * @param {string} data
  * @returns {number[]}
