@@ -1,13 +1,16 @@
 {
   "name": "x-client-transaction-id-generater",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "type": "commonjs",
   "main": "src/main.js",
   "types": "dist/main.d.ts",
   "scripts": {
     "build": "tsc"
   },
+  "license": "MIT",
   "dependencies": {
+    "jsdom": "^26.1.0",
+    "linkedom": "^0.18.10",
     "node-html-parser": "^7.0.1"
   },
   "devDependencies": {
