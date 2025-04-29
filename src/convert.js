@@ -125,4 +125,41 @@ function doAnimation(numArr, frameTime) {
   };
 }
 
+const getAnimationKey = (svgArray, verification, indexKey) => {
+  const index = verification[indexKey[0]] % 16;
+  const frameTime = (verification[indexKey[1]] % 16) * (verification[indexKey[2]] % 16) * (verification[indexKey[3]] % 16);
+  const style = doAnimation(svgArray[index], frameTime);
+  // console.log(style)
+
+  const hexIntArray = Array.from([style.color.length + style.transform.length + 2]);
+  const hexArray = hexIntArray.map((i) => i.toString(16));
+  hexArray[7] = hexArray[8] = "0";
+  for (let i = 0; i < 3; i++) {
+    const numColorValue = style.color[i];
+    if (numColorValue >= 0 && numColorValue <= 255) {
+      hexArray[i] = numColorValue.toString(16);
+    }
+    if (numColorValue < 0) {
+      hexArray[i] = "0";
+    } else {
+      hexArray[i] = "ff";
+    }
+  }
+  for (let i = 0; i < 4; i++) {
+    let numMatrixValue = style.transform[i];
+    if (numMatrixValue < 0) {
+      numMatrixValue = -numMatrixValue;
+    }
+    // console.log(numMatrixValue, i)
+    if (numMatrixValue > 0 && numMatrixValue < 1) {
+      hexArray[i + 3] = numMatrixValue.toString(16).replace(".", "");
+    } else if (numMatrixValue <= 0) {
+      hexArray[i + 3] = "0";
+    } else {
+      hexArray[i + 3] = "1";
+    }
+  }
+  return hexArray;
+};
+
 module.exports = { getAnimationKey };

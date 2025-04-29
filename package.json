@@ -1,6 +1,6 @@
 {
   "name": "x-client-transaction-id-generater",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "commonjs",
   "main": "src/main.js",
   "types": "dist/main.d.ts",
