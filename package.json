@@ -1,0 +1,17 @@
+{
+  "name": "x-client-transaction-id-generater",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "src/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  }
+}
