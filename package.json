@@ -9,9 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jsdom": "^26.1.0",
-    "linkedom": "^0.18.10",
-    "node-html-parser": "^7.0.1"
+    "jsdom": "^26.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
